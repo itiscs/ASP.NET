@@ -10,6 +10,7 @@ namespace EntityApp
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
@@ -17,7 +18,7 @@ namespace EntityApp
                 FillddlBlogs();
                
             }
-
+            lvPosts.DataBind();
 
         }
 
@@ -31,7 +32,7 @@ namespace EntityApp
 
                 foreach (var item in query)
                 {
-                    ddlBlogs.Items.Add(item.Name);
+                    ddlBlogs.Items.Add(new ListItem(item.Name,item.BlogID.ToString()));
                 }
             }
             FillPosts();
@@ -42,41 +43,28 @@ namespace EntityApp
         {
             using (var db = new BlogsContext())
             {
-
-                var q1 = db.Posts.Where(p => p.Blog.Name ==
-                      ddlBlogs.SelectedValue).OrderBy(p => p.Title);
+                int blogID = int.Parse(ddlBlogs.SelectedValue);
+                var q1 = db.Posts.Where(p => p.Blog.BlogID == blogID).
+                    OrderBy(p => p.Title);
 
                 string str = "";
                 foreach (var item in q1)
                 {
                     str += $"{item.Blog.Name} {item.Title} {item.Content} ";
                 }
-
-                Label1.Text = str;
+                
             }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+         
             using (var db = new BlogsContext())
             {
                 var blog = new Blog {Name=blogName.Text};
-
-                db.Blogs.Add(blog);
+                if(db.Blogs.Where(b => b.Name == blog.Name).Count() == 0)
+                    db.Blogs.Add(blog);
                 db.SaveChanges();
-
-                //// Display all Blogs from the database 
-                //var query = from b in db.Blogs
-                //            orderby b.Name
-                //            select b;
-
-                //ddlBlogs.Items.Clear();
-
-                //foreach (var item in query)
-                //{
-                //    ddlBlogs.Items.Add(item.Name);
-                //}
-
             }
 
             FillddlBlogs();
@@ -88,9 +76,9 @@ namespace EntityApp
         {
             using (var db = new BlogsContext())
             {
-
+                int blogID = int.Parse(ddlBlogs.SelectedValue);
                 var blog = db.Blogs.Where(b => 
-                        b.Name == ddlBlogs.SelectedValue).First();
+                        b.BlogID == blogID).First();
 
                 Post post = new Post()
                 {
@@ -107,7 +95,38 @@ namespace EntityApp
 
         protected void ddlBlogs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FillPosts();
+            FillPosts();            
+        }
+
+        // Возвращаемый тип можно изменить на IEnumerable, однако для обеспечения поддержки
+   //     постраничного просмотра и сортировки // необходимо добавить следующие параметры:
+//     int maximumRows
+//     int startRowIndex
+//     out int totalRowCount
+//     string sortByExpression
+        public IQueryable lvPosts_GetData()
+        {
+            int blogID = int.Parse(ddlBlogs.SelectedValue);
+            var db = new BlogsContext();
+            return db.Posts.Where(p=>p.Blog.BlogID==blogID);
+        }
+
+        // Имя параметра идентификатора должно быть таким же, как значение DataKeyNames, заданное в панели управления
+        public void lvPosts_DeleteItem(int id)
+        {
+
+        }
+
+        // Имя параметра идентификатора должно быть таким же, как значение DataKeyNames, заданное в панели управления
+        public void lvPosts_UpdateItem(int PostId)
+        {
+
+
+        }
+
+        protected void lvPosts_ItemUpdating(object sender, ListViewUpdateEventArgs e)
+        {
+           
         }
     }
 }

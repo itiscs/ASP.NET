@@ -8,7 +8,9 @@ namespace EntityApp.Models
 {
     public class Blog
     {
+           
         public int BlogID { get; set; }
+        [Required,MaxLength(100)]
         public string Name { get; set; }
         public string Url { get; set; }
 

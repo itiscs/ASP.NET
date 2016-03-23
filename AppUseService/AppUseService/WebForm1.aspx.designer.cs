@@ -7,7 +7,7 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace EntityApp {
+namespace AppUseService {
     
     
     public partial class WebForm1 {
@@ -22,31 +22,31 @@ namespace EntityApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// blogName элемент управления.
+        /// lblHello элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox blogName;
+        protected global::System.Web.UI.WebControls.Label lblHello;
         
         /// <summary>
-        /// ddlBlogs элемент управления.
+        /// txtID элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBlogs;
+        protected global::System.Web.UI.WebControls.TextBox txtID;
         
         /// <summary>
-        /// txtTitle элемент управления.
+        /// txtA элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtA;
         
         /// <summary>
         /// Button1 элемент управления.
@@ -58,39 +58,57 @@ namespace EntityApp {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// Button2 элемент управления.
+        /// txtB элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.TextBox txtB;
         
         /// <summary>
-        /// txtContent элемент управления.
+        /// lblID элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContent;
+        protected global::System.Web.UI.WebControls.Label lblID;
         
         /// <summary>
-        /// lvPosts элемент управления.
+        /// txtSum элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvPosts;
+        protected global::System.Web.UI.WebControls.TextBox txtSum;
         
         /// <summary>
-        /// BlogsContextDataSource элемент управления.
+        /// lblName элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource BlogsContextDataSource;
+        protected global::System.Web.UI.WebControls.Label lblName;
+        
+        /// <summary>
+        /// btnSum элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSum;
+        
+        /// <summary>
+        /// lblAge элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAge;
     }
 }
