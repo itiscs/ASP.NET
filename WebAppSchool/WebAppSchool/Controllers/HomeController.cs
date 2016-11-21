@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebAppSchool.Models;
+using WebAppSchool.ViewModels;
 
 namespace WebAppSchool.Controllers
 {
     public class HomeController : Controller
     {
+        private SchoolDB db = new SchoolDB();
+        
         public ActionResult Index()
         {
             return View();
@@ -15,9 +19,15 @@ namespace WebAppSchool.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            IQueryable<EnrollmentDateGroup> 
+                data = from student in db.Students
+           group student by student.EnrollmentDate into dateGroup
+                       select new EnrollmentDateGroup()
+                      {
+                            EnrollmentDate = dateGroup.Key,
+                            StudentCount = dateGroup.Count()
+                       };
+            return View(data.ToList());
         }
 
         public ActionResult Contact()
@@ -26,5 +36,13 @@ namespace WebAppSchool.Controllers
 
             return View();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
+
+
     }
 }
